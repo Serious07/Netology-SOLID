@@ -18,7 +18,9 @@ public class Main {
 
         System.out.println("Введите два слова: название товара и количество. Или end");
         Scanner scanner = new Scanner(System.in);
-        Purchase purchase = new Purchase();
+
+        Basket basket = new Basket();
+        Purchase purchase = new Purchase(basket);
         while (true) {
             String line = scanner.nextLine();
             if ("end".equals(line)) break;
@@ -28,10 +30,10 @@ public class Main {
             purchase.addPurchase(product, count);
         }
 
-        Calculations calculations = new Calculations(purchase.getPurchases());
+        Calculations calculations = new Calculations(basket);
         long sum = calculations.sum(products);
 
-        Console.showAllProductsPricesAndAmount(products, purchase.getPurchases());
+        Console.showAllProductsPricesAndAmount(products, basket);
 
         System.out.println("ИТОГО: " + sum);
     }

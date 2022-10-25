@@ -3,20 +3,16 @@ import java.util.List;
 import java.util.Map;
 
 public class Calculations {
-    protected List<Purchase> purchases;
+    protected Basket basket;
 
-    public Calculations(List<Purchase> purchases){
-        this.purchases = purchases;
-    }
-
-    public Calculations(Purchase[] purchases){
-        this.purchases = new ArrayList<>(List.of(purchases));
+    public Calculations(Basket basket){
+        this.basket = basket;
     }
 
     public long sum(Map<String, Integer> prices) {
         long sum = 0;
-        for (int i = 0; i < purchases.size(); i++) {
-            Purchase purchase = purchases.get(i);
+        for (int i = 0; i < basket.getPurchases().size(); i++) {
+            Purchase purchase = basket.getPurchases().get(i);
             if (purchase == null) continue;
             sum += purchase.count * prices.get(purchase.title);
         }
