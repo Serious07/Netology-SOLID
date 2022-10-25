@@ -1,9 +1,11 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Purchase {
     protected String title;
     protected int count;
-    protected Purchase[] purchases = new Purchase[4];
+    protected List<Purchase> purchases = new ArrayList<>();
 
     public Purchase(String title, int count) {
         this.title = title;
@@ -14,27 +16,17 @@ public class Purchase {
     }
 
     public void addPurchase(String title, int count) {
-        for (int i = 0; i < purchases.length; i++) {
-            if (purchases[i] == null) {
-                purchases[i] = new Purchase(title, count);
-                return;
-            }
-            if (purchases[i].title.equals(title)) {
-                purchases[i].count += count;
+        for (int i = 0; i < purchases.size(); i++) {
+            if (purchases.get(i).title.equals(title)) {
+                purchases.get(i).count += count;
                 return;
             }
         }
+
+        purchases.add(new Purchase(title, count));
     }
 
-    public long sum(Map<String, Integer> prices) {
-        long sum = 0;
-        System.out.println("КОРЗИНА:");
-        for (int i = 0; i < purchases.length; i++) {
-            Purchase purchase = purchases[i];
-            if (purchase == null) continue;
-            System.out.println("\t" + purchase.title + " " + purchase.count + " шт. в сумме " + (purchase.count * prices.get(purchase.title)) + " руб.");
-            sum += purchase.count * prices.get(purchase.title);
-        }
-        return sum;
+    public List<Purchase> getPurchases(){
+        return purchases;
     }
 }
