@@ -30,6 +30,9 @@ public class Main {
 
         Calculations calculations = new Calculations(purchase.getPurchases());
         long sum = calculations.sum(products);
+
+        Console.showAllProductsPricesAndAmount(products, purchase.getPurchases());
+
         System.out.println("ИТОГО: " + sum);
     }
 }
