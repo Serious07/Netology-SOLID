@@ -20,14 +20,13 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         Basket basket = new Basket();
-        Purchase purchase = new Purchase(basket);
         while (true) {
             String line = scanner.nextLine();
             if ("end".equals(line)) break;
             String[] parts = line.split(" ");
             String product = parts[0];
             int count = Integer.parseInt(parts[1]);
-            purchase.addPurchase(product, count);
+            basket.addPurchase(product, count);
         }
 
         Calculations calculations = new Calculations(basket);

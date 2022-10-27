@@ -16,15 +16,4 @@ public class Purchase {
     public Purchase(Basket basket) {
         this.basket = basket;
     }
-
-    public void addPurchase(String title, int count) {
-        for (int i = 0; i < basket.getPurchases().size(); i++) {
-            if (basket.getPurchases().get(i).title.equals(title)) {
-                basket.getPurchases().get(i).count += count;
-                return;
-            }
-        }
-
-        basket.addNewPurchases(new Purchase(title, count, basket));
-    }
 }

@@ -8,7 +8,14 @@ public class Basket {
         return purchases;
     }
 
-    public void addNewPurchases(Purchase purchase){
-        purchases.add(purchase);
+    public void addPurchase(String title, int count) {
+        for (int i = 0; i < purchases.size(); i++) {
+            if (purchases.get(i).title.equals(title)) {
+                purchases.get(i).count += count;
+                return;
+            }
+        }
+
+        purchases.add(new Purchase(title, count, this));
     }
 }
